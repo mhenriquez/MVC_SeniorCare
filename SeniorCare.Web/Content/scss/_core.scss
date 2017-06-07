@@ -1,0 +1,89 @@
+﻿// Variables
+$font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+/*
+    General styles
+*/
+body {
+    margin: 0;
+    padding-top: 50px;
+    background-color: #FBFBF1;
+    background-color: rgba(245, 245, 220, 0.4);
+}
+
+.navbar {
+    background-color: #E2850C;
+    background-color: rgba(226, 133, 12, 0.8);
+    border: none;
+    border-bottom: 1px solid #F39B23;
+    
+    .navbar-brand {
+        color: #FFF;
+    }
+
+    .navbar-logo {
+        margin-top: 5px;
+        width: 50px;
+        height: 40px;
+    }
+}
+
+.body-content {
+    padding: 0;
+    font-family: $font-stack;
+
+    h3, h4, h5 {
+        color: #C89240;
+    }
+
+    .phone-number {
+        letter-spacing: -.05em;
+    }
+
+    // Mobile devices (phones, up to 767px)
+    @media (max-width: 767px) {
+
+        .img-placeholder {
+            display: none;
+            visibility: hidden;
+        }
+    }
+
+    // Small devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+
+        h3 {
+            padding-bottom: 5px;
+            border-bottom: 2px solid #F4E9D9;
+            font-size: 1.9em;
+            font-weight: 400;
+        }
+
+        .img-placeholder {
+            margin-top: 20px;
+            width: 343px;
+            height: 343px;
+        }
+
+        .phone-number {
+            padding-top: 50px;
+        }
+    }
+
+    // Medium devices (desktops, 992px and up) 
+    @media (min-width: 992px) {
+
+        h3 {
+            font-size: 2em;
+            border-bottom: 2px solid #F4E9D9;
+        }
+
+        .phone-number {
+            font-size: 3em;
+        }
+    }
+}
+
+footer {
+    color: #999;
+}

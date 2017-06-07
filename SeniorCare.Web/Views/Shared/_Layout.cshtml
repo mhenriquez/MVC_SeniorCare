@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Senior Care in Brevard Florida: @ViewBag.Title</title>
+    @Styles.Render("~/content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>*@
+                <img class="navbar-logo" src="~/Content/Images/seniorcare_logo.png" alt="Senior Care Logo" /><span>&nbsp;</span>
+                @Html.ActionLink("Brevard Senior Care", "index", "home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "index", "home", new { area = "" }, null)</li>
+                    <li><a class="btn btn-block btn-default" href="#">Register</a></li>
+                    <li><a class="btn btn-block btn-default" href="#">Facilities</a></li>
+                </ul>*@
+            </div>
+        </div>
+    </div>
+    <noscript>
+        <h3>This page requires JavaScript.</h3>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MLTBN4" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <footer>
+            <p>&nbsp;</p>
+            <p class="container"><small>Copyright &copy; @DateTime.Now.Year, All rights reserved.</small></p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/scripts")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

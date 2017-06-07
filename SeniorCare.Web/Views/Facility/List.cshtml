@@ -1,0 +1,30 @@
+﻿
+@section scripts {}
+
+<!-- List Items -->
+<section class="section-three">
+    <div class="container">
+        @if (Model != null)
+        {
+            <hr />
+            foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h3>@item.Name</h3>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="col-md-9">
+                            <p><strong>Address:</strong> @item.AddressLine1</p>
+                            <p><strong>City:</strong> @item.AddressCity <strong>State:</strong> @item.AddressState <strong>Zip:</strong> @item.AddressZip</p>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-default btn-block " href="/facility/detail/@item.ID">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+        }
+    </div>
+</section>

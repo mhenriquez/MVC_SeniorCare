@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SeniorCareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Facilities">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressCity" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressState" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddressZip" Type="nvarchar" MaxLength="20" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="FacilitiesOptions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FacilityID" Type="int" Nullable="false" />
+          <Property Name="FacilityOptionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacilityOptions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FacilityOptionTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FacilityOptionTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FacilitiesOptions_Facilities">
+          <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+          <End Role="FacilitiesOptions" Type="Self.FacilitiesOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facilities">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FacilitiesOptions">
+              <PropertyRef Name="FacilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacilitiesOptions_FacilityOptions">
+          <End Role="FacilityOptions" Type="Self.FacilityOptions" Multiplicity="1" />
+          <End Role="FacilitiesOptions" Type="Self.FacilitiesOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityOptions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FacilitiesOptions">
+              <PropertyRef Name="FacilityOptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacilityOptions_FacilityOptionTypes">
+          <End Role="FacilityOptionTypes" Type="Self.FacilityOptionTypes" Multiplicity="1" />
+          <End Role="FacilityOptions" Type="Self.FacilityOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityOptionTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FacilityOptions">
+              <PropertyRef Name="FacilityOptionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SeniorCareModelStoreContainer">
+          <EntitySet Name="Facilities" EntityType="Self.Facilities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacilitiesOptions" EntityType="Self.FacilitiesOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacilityOptions" EntityType="Self.FacilityOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacilityOptionTypes" EntityType="Self.FacilityOptionTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FacilitiesOptions_Facilities" Association="Self.FK_FacilitiesOptions_Facilities">
+            <End Role="Facilities" EntitySet="Facilities" />
+            <End Role="FacilitiesOptions" EntitySet="FacilitiesOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacilitiesOptions_FacilityOptions" Association="Self.FK_FacilitiesOptions_FacilityOptions">
+            <End Role="FacilityOptions" EntitySet="FacilityOptions" />
+            <End Role="FacilitiesOptions" EntitySet="FacilitiesOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacilityOptions_FacilityOptionTypes" Association="Self.FK_FacilityOptions_FacilityOptionTypes">
+            <End Role="FacilityOptionTypes" EntitySet="FacilityOptionTypes" />
+            <End Role="FacilityOptions" EntitySet="FacilityOptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SeniorCareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Facility">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressState" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddressZip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="FacilitiesOptions" Relationship="SeniorCareModel.FK_FacilitiesOptions_Facilities" FromRole="Facility" ToRole="FacilitiesOption" />
+        </EntityType>
+        <EntityContainer Name="SeniorCareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Facilities" EntityType="Self.Facility" />
+          <EntitySet Name="FacilitiesOptions" EntityType="SeniorCareModel.FacilitiesOption" />
+          <EntitySet Name="FacilityOptions" EntityType="SeniorCareModel.FacilityOption" />
+          <EntitySet Name="FacilityOptionTypes" EntityType="SeniorCareModel.FacilityOptionType" />
+          <AssociationSet Name="FK_FacilitiesOptions_Facilities" Association="SeniorCareModel.FK_FacilitiesOptions_Facilities">
+            <End Role="Facility" EntitySet="Facilities" />
+            <End Role="FacilitiesOption" EntitySet="FacilitiesOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacilitiesOptions_FacilityOptions" Association="SeniorCareModel.FK_FacilitiesOptions_FacilityOptions">
+            <End Role="FacilityOption" EntitySet="FacilityOptions" />
+            <End Role="FacilitiesOption" EntitySet="FacilitiesOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FacilityOptions_FacilityOptionTypes" Association="SeniorCareModel.FK_FacilityOptions_FacilityOptionTypes">
+            <End Role="FacilityOptionType" EntitySet="FacilityOptionTypes" />
+            <End Role="FacilityOption" EntitySet="FacilityOptions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FacilitiesOption">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FacilityID" Type="Int32" Nullable="false" />
+          <Property Name="FacilityOptionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Facility" Relationship="SeniorCareModel.FK_FacilitiesOptions_Facilities" FromRole="FacilitiesOption" ToRole="Facility" />
+          <NavigationProperty Name="FacilityOption" Relationship="SeniorCareModel.FK_FacilitiesOptions_FacilityOptions" FromRole="FacilitiesOption" ToRole="FacilityOption" />
+        </EntityType>
+        <EntityType Name="FacilityOption">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityOptionTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FacilitiesOptions" Relationship="SeniorCareModel.FK_FacilitiesOptions_FacilityOptions" FromRole="FacilityOption" ToRole="FacilitiesOption" />
+          <NavigationProperty Name="FacilityOptionType" Relationship="SeniorCareModel.FK_FacilityOptions_FacilityOptionTypes" FromRole="FacilityOption" ToRole="FacilityOptionType" />
+        </EntityType>
+        <EntityType Name="FacilityOptionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FacilityOptions" Relationship="SeniorCareModel.FK_FacilityOptions_FacilityOptionTypes" FromRole="FacilityOptionType" ToRole="FacilityOption" />
+        </EntityType>
+        <Association Name="FK_FacilitiesOptions_Facilities">
+          <End Type="SeniorCareModel.Facility" Role="Facility" Multiplicity="1" />
+          <End Type="SeniorCareModel.FacilitiesOption" Role="FacilitiesOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facility">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FacilitiesOption">
+              <PropertyRef Name="FacilityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacilitiesOptions_FacilityOptions">
+          <End Type="SeniorCareModel.FacilityOption" Role="FacilityOption" Multiplicity="1" />
+          <End Type="SeniorCareModel.FacilitiesOption" Role="FacilitiesOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityOption">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FacilitiesOption">
+              <PropertyRef Name="FacilityOptionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FacilityOptions_FacilityOptionTypes">
+          <End Type="SeniorCareModel.FacilityOptionType" Role="FacilityOptionType" Multiplicity="1" />
+          <End Type="SeniorCareModel.FacilityOption" Role="FacilityOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FacilityOptionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FacilityOption">
+              <PropertyRef Name="FacilityOptionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SeniorCareModelStoreContainer" CdmEntityContainer="SeniorCareEntities">
+          <EntitySetMapping Name="Facilities">
+            <EntityTypeMapping TypeName="SeniorCareModel.Facility">
+              <MappingFragment StoreEntitySet="Facilities">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+                <ScalarProperty Name="AddressState" ColumnName="AddressState" />
+                <ScalarProperty Name="AddressZip" ColumnName="AddressZip" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacilitiesOptions">
+            <EntityTypeMapping TypeName="SeniorCareModel.FacilitiesOption">
+              <MappingFragment StoreEntitySet="FacilitiesOptions">
+                <ScalarProperty Name="FacilityOptionID" ColumnName="FacilityOptionID" />
+                <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacilityOptions">
+            <EntityTypeMapping TypeName="SeniorCareModel.FacilityOption">
+              <MappingFragment StoreEntitySet="FacilityOptions">
+                <ScalarProperty Name="FacilityOptionTypeID" ColumnName="FacilityOptionTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacilityOptionTypes">
+            <EntityTypeMapping TypeName="SeniorCareModel.FacilityOptionType">
+              <MappingFragment StoreEntitySet="FacilityOptionTypes">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

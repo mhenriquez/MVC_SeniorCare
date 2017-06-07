@@ -1,0 +1,94 @@
+/*
+    General styles
+*/
+body {
+  margin: 0;
+  padding-top: 50px;
+  background-color: #FBFBF1;
+  background-color: rgba(245, 245, 220, 0.4); }
+
+.navbar {
+  background-color: #E2850C;
+  background-color: #e2850c;
+  border-bottom: 1px solid #F39B23; }
+  .navbar .navbar-brand {
+    color: #FFF; }
+  .navbar .navbar-logo {
+    margin-top: 5px;
+    width: 50px;
+    height: 40px; }
+
+.body-content {
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+  .body-content h3, .body-content h4, .body-content h5 {
+    color: #C89240; }
+  .body-content .phone-number {
+    letter-spacing: -.05em; }
+  @media (max-width: 767px) {
+    .body-content .img-placeholder {
+      display: none;
+      visibility: hidden; } }
+  @media (min-width: 768px) {
+    .body-content h3 {
+      padding-bottom: 5px;
+      border-bottom: 2px solid #F4E9D9;
+      font-size: 1.9em;
+      font-weight: 400; }
+    .body-content .img-placeholder {
+      margin-top: 20px;
+      width: 343px;
+      height: 343px; } }
+  @media (min-width: 992px) {
+    .body-content h3 {
+      font-size: 2em;
+      border-bottom: 2px solid #F4E9D9; } }
+
+footer {
+  color: #999; }
+
+/*
+    Section 1
+*/
+.section-one .container {
+  background-image: url(/content/images/senior-care-alt.png);
+  background-repeat: no-repeat; }
+  @media (max-width: 767px) {
+    .section-one .container {
+      background: none;
+      padding-top: 30px;
+      padding-bottom: 30px; } }
+  @media (min-width: 768px) {
+    .section-one .container {
+      background-position-x: right;
+      background-position-y: -30px;
+      background-size: 85%;
+      padding-top: 50px;
+      padding-bottom: 40px; }
+      .section-one .container .lead {
+        font-size: 1.5em; } }
+  @media (min-width: 992px) {
+    .section-one .container {
+      background-size: 69%; }
+      .section-one .container .lead {
+        font-size: 1.83em; } }
+
+/*
+    Section 2
+*/
+.section-two {
+  background: none; }
+  @media (min-width: 992px) {
+    .section-two .container {
+      padding: 30px; } }
+
+/*
+    Section 3
+*/
+.section-three {
+  background: none; }
+  @media (min-width: 992px) {
+    .section-three .container {
+      padding: 30px; } }
+
+/*# sourceMappingURL=site.css.map */

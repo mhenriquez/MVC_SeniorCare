@@ -1,0 +1,46 @@
+﻿/*
+    Section 1
+*/
+
+// All devices (all views)
+.section-one {
+    background-color: #FFF;
+    border-bottom: 9px solid #E2850C;
+
+    .container {
+        background-image: url(/content/images/senior-care-alt.png);
+        background-repeat: no-repeat;
+
+        // Mobile devices (phones, up to 767px)
+        @media (max-width: 767px) {
+
+            background: none;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        // Small devices (tablets, 768px and up)
+        @media (min-width: 768px) {
+
+            background-position-x: right;
+            background-position-y: top;
+            background-size: 85%;
+            padding-top: 50px;
+            padding-bottom: 30px;
+
+            .lead {
+                font-size: 1.5em;
+            }
+        }
+
+        // Medium devices (desktops, 992px and up) 
+        @media (min-width: 992px) {
+            
+            background-size: 75%;
+
+            .lead {
+                font-size: 1.83em;
+            }
+        }
+    }
+}

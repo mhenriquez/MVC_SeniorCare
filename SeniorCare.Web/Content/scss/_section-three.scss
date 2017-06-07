@@ -1,0 +1,16 @@
+﻿/*
+    Section 3
+*/
+
+// All devices (all views)
+.section-three {
+    background: none;
+
+    @media (min-width: 992px) {
+        .container {
+            // background-image: url(/content/images/...);
+            // background-repeat: no-repeat;
+            padding: 30px;
+        }
+    }
+}
